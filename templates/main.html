@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Booking System</title>
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link type="text/css" href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+    <script type="module" src="{{ url_for('static', path='/firebase-login.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Room Booking System</h1>
+        <div id="login-box" hidden="true">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <button id="login" class="btn btn-primary">Login</button>
+            <button id="sign-up" class="btn btn-secondary">Sign Up</button>
+        </div>
+        <button id="sign-out" class="btn btn-danger" hidden="true">Sign out</button>
+        
+        {% if user_token %}
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <a href="/book_room" class="btn btn-success btn-block">Book a Room</a><br>
+                </div>
+                <div class="col-md-3">
+                    <a href="/search_room" class="btn btn-info btn-block">Search for a specific Rooms</a><br>
+                </div>
+                <div class="col-md-3">
+                    <a href="/add_room" class="btn btn-warning btn-block">Add Rooms</a><br>
+                </div>
+                <div class="col-md-3">
+                    <a href="/list_rooms" class="btn btn-primary btn-block">List Rooms</a><br>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <a href="/user_bookings" class="btn btn-primary btn-block">Show My Bookings</a>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <a href="/bookings_for_day" class="btn btn-primary btn-block">Filter Bookings</a>
+                </div>
+            </div>
+        </div>
+            {% if user_bookings %}
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h2>Your Bookings:</h2>
+                    <ul>
+                        {% for booking in user_bookings %}
+                            <li>{{ booking.room_number }} - {{ booking.start_datetime }} to {{ booking.end_datetime }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+          
+            {% if room_bookings %}
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h2>Room Bookings:</h2>
+                    <ul>
+                        {% for booking in room_bookings %}
+                            <li>{{ booking.room_number }} - {{ booking.start_datetime }} to {{ booking.end_datetime }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+        
+    </div>
+  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
