@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Room</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .add-room-form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4">Add Room</h2>
+        <form action="/add_room" method="post" class="add-room-form">
+            <div class="form-group">
+                <label for="room_number">Room Name:</label>
+                <input type="text" class="form-control" id="room_number" name="room_number" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Room</button>
+            <a href="/" class="btn btn-secondary ml-2">Back to Main Page</a>
+        </form>
+    </div>
+</body>
+</html>
